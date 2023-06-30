@@ -12,3 +12,4 @@ Project goals:
 5. Utilize gradle.
    - ``gradle -m`` OR ``gradle --dry-run`` can be used for getting errors
 6. Some kind of cache for classes and methods. Maybe reflection can be used to index?
+7. Git integration could be cool, but that's a pipe dream at this point.
