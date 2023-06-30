@@ -18,8 +18,37 @@
 
 package org.mocha;
 
+import com.formdev.flatlaf.FlatLightLaf;
+
+import javax.swing.*;
+import java.awt.*;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+
+        FlatLightLaf.setup();
+
+        JFrame frame = new JFrame();
+
+        frame.setTitle("Mocha 0.0.0 (Prototyping)");
+
+        JButton button = new JButton("Cool");
+
+        button.setBounds(130,100,100,40);
+
+        button.addActionListener(e -> {
+            System.out.println("Yeah, that's pretty cool");
+        });
+
+        frame.add(button);
+
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        double width = screenSize.width;
+        double height = screenSize.height;
+
+        frame.setSize((int) Math.floor(width / 2.0), (int) Math.floor(height / 2.0));
+
+        frame.setLayout(null);
+        frame.setVisible(true);
     }
 }
