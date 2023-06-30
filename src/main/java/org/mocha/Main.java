@@ -24,27 +24,31 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Main {
+    private static JFrame frame;
+    private static JButton exitButton;
+
     public static void main(String[] args) {
 
         FlatLightLaf.setup();
 
-        JFrame frame = new JFrame();
+        frame = new JFrame();
 
         frame.setTitle("Mocha 0.0.0 (Prototyping)");
-
-        JButton button = new JButton("Cool");
-
-        button.setBounds(130,100,100,40);
-
-        button.addActionListener(e -> {
-            System.out.println("Yeah, that's pretty cool");
-        });
-
-        frame.add(button);
 
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         double width = screenSize.width;
         double height = screenSize.height;
+
+        exitButton = new JButton("Exit");
+
+        exitButton.setBounds(2,2,96,20);
+
+        exitButton.addActionListener(event -> {
+            System.out.println("Have a good one!");
+            System.exit(0);
+        });
+
+        frame.add(exitButton);
 
         frame.setSize((int) Math.floor(width / 2.0), (int) Math.floor(height / 2.0));
 
