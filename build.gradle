@@ -11,6 +11,14 @@ repositories {
 }
 
 dependencies {
+
+    runtimeOnly 'com.formdev:flatlaf:3.1.1'
+
+    final String flatlafVersion = "3.1"
+    implementation( "com.formdev:flatlaf:${flatlafVersion}" )
+    implementation( "com.formdev:flatlaf:${flatlafVersion}:linux-x86_64@so" )
+    implementation( "com.formdev:flatlaf:${flatlafVersion}:windows-x86_64@dll" )
+
     testImplementation platform('org.junit:junit-bom:5.9.1')
     testImplementation 'org.junit.jupiter:junit-jupiter'
 }
