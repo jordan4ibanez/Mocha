@@ -26,32 +26,50 @@ import java.awt.event.*;
 
 public class Main {
     private static JFrame frame;
+    private static Container windowPane;
     private static JButton exitButton;
+    private static JTextArea codeArea;
+
+    private static final int SINGLE_PADDING = 2;
+    private static final int DOUBLE_PADDING = SINGLE_PADDING * 2;
+    private static final int QUADRUPLE_PADDING = DOUBLE_PADDING * 2;
 
     public static void main(String[] args) {
 
         FlatLightLaf.setup();
 
         frame = new JFrame();
+        windowPane = frame.getContentPane();
 
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         frame.setTitle("Mocha 0.0.0 (Prototyping)");
 
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        double width = screenSize.width;
-        double height = screenSize.height;
+        int width = (int) Math.floor(screenSize.width / 2.0);
+        int height = (int) Math.floor(screenSize.height / 2.0);
 
-        frame.setSize((int) Math.floor(width / 2.0), (int) Math.floor(height / 2.0));
+        frame.setSize(width, height);
 
+        // This is a hack-job to make the window pane have a usable size
+        frame.setLayout(null);
+        frame.setVisible(true);
+
+        // Create the exit button
         exitButton = new JButton("Exit");
-
-        exitButton.setBounds(2,2,96,20);
-
+        exitButton.setBounds(SINGLE_PADDING, SINGLE_PADDING,100 - DOUBLE_PADDING,20 - DOUBLE_PADDING);
         exitButton.addActionListener(event -> {
             closeProcedure();
         });
         frame.add(exitButton);
+
+        // Create the coding area
+        codeArea = new JTextArea();
+        System.out.println(windowPane.getWidth());
+        // Note: This can get very complicated, turn this into a function
+        codeArea.setBounds(100 + SINGLE_PADDING,20 + SINGLE_PADDING,windowPane.getWidth() - (100 + QUADRUPLE_PADDING), windowPane.getHeight() - (20 + QUADRUPLE_PADDING));
+        frame.add(codeArea);
+
 
         // Close listener
         frame.addWindowListener(new WindowAdapter() {
@@ -73,8 +91,8 @@ public class Main {
             }
         });
 
-        frame.setLayout(null);
-        frame.setVisible(true);
+        // The pane is dirty, needs a repaint
+        frame.repaint();
     }
 
     public static void closeProcedure() {
