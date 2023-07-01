@@ -22,6 +22,9 @@ import com.formdev.flatlaf.FlatLightLaf;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 public class Main {
     private static JFrame frame;
@@ -32,6 +35,8 @@ public class Main {
         FlatLightLaf.setup();
 
         frame = new JFrame();
+
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         frame.setTitle("Mocha 0.0.0 (Prototyping)");
 
@@ -44,15 +49,29 @@ public class Main {
         exitButton.setBounds(2,2,96,20);
 
         exitButton.addActionListener(event -> {
-            System.out.println("Have a good one!");
-            System.exit(0);
+            closeProcedure();
+        });
+        frame.add(exitButton);
+
+        frame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                super.windowClosing(e);
+                closeProcedure();
+            }
         });
 
-        frame.add(exitButton);
+
 
         frame.setSize((int) Math.floor(width / 2.0), (int) Math.floor(height / 2.0));
 
         frame.setLayout(null);
         frame.setVisible(true);
+    }
+
+    public static void closeProcedure() {
+        System.out.println("See ya!");
+        // Save here
+        System.exit(0);
     }
 }
