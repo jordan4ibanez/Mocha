@@ -67,7 +67,6 @@ public class Main {
 
         // Create the coding area
         codeArea = new JTextArea();
-        System.out.println(windowPane.getWidth());
         // Note: This can get very complicated, turn this into a function
         codeArea.setBounds(100 + SINGLE_PADDING,20 + SINGLE_PADDING,windowPane.getWidth() - (100 + QUADRUPLE_PADDING), windowPane.getHeight() - (20 + QUADRUPLE_PADDING));
         frame.add(codeArea);
