@@ -25,6 +25,8 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class Main {
+
+    private static boolean running = true;
     private static JFrame frame;
     private static Container windowPane;
     private static JButton exitButton;
@@ -85,17 +87,29 @@ public class Main {
             @Override
             public void componentResized(ComponentEvent e) {
                 super.componentResized(e);
-                Dimension newSize = frame.getSize();
-
+                codeArea.setBounds(100 + SINGLE_PADDING,20 + SINGLE_PADDING,windowPane.getWidth() - (100 + QUADRUPLE_PADDING), windowPane.getHeight() - (20 + QUADRUPLE_PADDING));
 //                System.out.println(newSize);
             }
         });
 
         // The pane is dirty, needs a repaint
         frame.repaint();
+
+
+        // SURPRISE! IT'S A GAME LOOP! WOO!
+        while (running) {
+            System.out.println("auto-save check");
+            try {
+                Thread.sleep(2000);
+            } catch (Exception e) {
+                closeProcedure();
+                throw new RuntimeException("Error! Main thread failed to sleep! ABORT ABORT!");
+            }
+        }
     }
 
     public static void closeProcedure() {
+        running = false;
         System.out.println("See ya!");
         // Save here
         System.exit(0);
