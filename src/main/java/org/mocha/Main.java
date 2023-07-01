@@ -18,6 +18,7 @@
 
 package org.mocha;
 
+import com.formdev.flatlaf.FlatDarculaLaf;
 import com.formdev.flatlaf.FlatLightLaf;
 
 import javax.swing.*;
@@ -38,7 +39,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        FlatLightLaf.setup();
+        FlatDarculaLaf.setup();
 
         frame = new JFrame();
         windowPane = frame.getContentPane();
@@ -59,7 +60,7 @@ public class Main {
 
         // Create the exit button
         exitButton = new JButton("Exit");
-        exitButton.setBounds(SINGLE_PADDING, SINGLE_PADDING,100 - DOUBLE_PADDING,20 - DOUBLE_PADDING);
+        exitButton.setBounds(0, 0,100,20);
         exitButton.addActionListener(event -> {
             closeProcedure();
         });
@@ -68,7 +69,7 @@ public class Main {
         // Create the coding area
         codeArea = new JTextArea();
         // Note: This can get very complicated, turn this into a function
-        codeArea.setBounds(100 + SINGLE_PADDING,20 + SINGLE_PADDING,windowPane.getWidth() - (100 + QUADRUPLE_PADDING), windowPane.getHeight() - (20 + QUADRUPLE_PADDING));
+        codeArea.setBounds(100, 20,windowPane.getWidth() - (100 + DOUBLE_PADDING), windowPane.getHeight() - (20 + DOUBLE_PADDING));
         frame.add(codeArea);
 
 
