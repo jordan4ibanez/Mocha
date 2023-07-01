@@ -22,9 +22,7 @@ import com.formdev.flatlaf.FlatLightLaf;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
+import java.awt.event.*;
 
 public class Main {
     private static JFrame frame;
@@ -44,6 +42,8 @@ public class Main {
         double width = screenSize.width;
         double height = screenSize.height;
 
+        frame.setSize((int) Math.floor(width / 2.0), (int) Math.floor(height / 2.0));
+
         exitButton = new JButton("Exit");
 
         exitButton.setBounds(2,2,96,20);
@@ -53,6 +53,7 @@ public class Main {
         });
         frame.add(exitButton);
 
+        // Close listener
         frame.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -61,9 +62,16 @@ public class Main {
             }
         });
 
+        // Resize listener
+        frame.addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentResized(ComponentEvent e) {
+                super.componentResized(e);
+                Dimension newSize = frame.getSize();
 
-
-        frame.setSize((int) Math.floor(width / 2.0), (int) Math.floor(height / 2.0));
+//                System.out.println(newSize);
+            }
+        });
 
         frame.setLayout(null);
         frame.setVisible(true);
